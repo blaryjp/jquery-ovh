@@ -70,7 +70,7 @@ Usage
 All functions (except 'isLogged') returns a `jqXHR` object (see [jQuery docs](https://api.jquery.com/jQuery.ajax/#jqXHR)).
 
 ```javascript
-Ovh.get('/me').then(function (infos) {
+$.ovh.get('/me').then(function (infos) {
     // Success!
     // The param contains all the datas.
 }, function (error) {
@@ -80,11 +80,11 @@ Ovh.get('/me').then(function (infos) {
 
 // or
 
-Ovh.get('/me').done(function (infos) {
+$.ovh.get('/me').done(function (infos) {
     // Success!
     // The param contains all the datas.
 });
-Ovh.get('/me').fail(function (error) {
+$.ovh.get('/me').fail(function (error) {
     // Error!
     // The param contains the traditional jqXHR error.
 });
@@ -94,7 +94,7 @@ Ovh.get('/me').fail(function (error) {
 
 * **login([urlToRedirect])**
 ```javascript
-Ovh.login('http://www.example.com/home');
+$.ovh.login('http://www.example.com/home');
 ```
 Log the user (request a new credential).
 It will redirect the user to the OVH API login page.
@@ -104,7 +104,7 @@ The token (the "Consumer Key" ("CK")) will be stored into the _localStorage_.
 
 * **logout()**
 ```javascript
-Ovh.logout();
+$.ovh.logout();
 ```
 Log out the user (expire current credential).
 
@@ -113,8 +113,8 @@ Log out the user (expire current credential).
 * **put(url, [settings])**
 * **delete(url, [settings])** (aliases: **del**, **remove**)
 ```javascript
-Ovh.get('/me');
-Ovh.post('/domain/zone/{zoneName}/record', {
+$.ovh.get('/me');
+$.ovh.post('/domain/zone/{zoneName}/record', {
     params : {
         zoneName  : 'example.com'    // 'zoneName' will be automatically replaced in the url!
     },
@@ -123,13 +123,13 @@ Ovh.post('/domain/zone/{zoneName}/record', {
         target    : '192.168.1.1'
     }
 });
-Ovh.put('/me', {
+$.ovh.put('/me', {
     data : {
         firstname : 'Bobobo-bo',
         name      : 'Bo-bobo'
     }
 });
-Ovh.delete('/me/sshKey/{keyName}', {
+$.ovh.delete('/me/sshKey/{keyName}', {
     params : {
         keyName : 'mypublickey'    // 'keyName' will be automatically replaced in the url!
     }
@@ -141,19 +141,19 @@ Note that the `done` promise returns directly the datas.
 
 * **getSchema(schemaPath)**
 ```javascript
-Ovh.getSchema('/me');
+$.ovh.getSchema('/me');
 ```
 Get specific schema from API (here "/me").
 
 * **getModels(schemaPath, [modelsName])**
 ```javascript
-Ovh.getModels('/me', 'nichandle.CountryEnum');
+$.ovh.getModels('/me', 'nichandle.CountryEnum');
 ```
 Get all or a specific Models from API (here "/me", "nichandle.CountryEnum"). If second param is omitted, it returns all the Models.
 
 * **isLogged()**
 ```javascript
-Ovh.isLogged();
+$.ovh.isLogged();
 ```
 Return `true` if user is connected.
 
