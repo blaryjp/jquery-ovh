@@ -53,6 +53,9 @@ require([
 
         $('#login').hide();
 
+        // Note: If you're using jQuery < 1.8,
+        // you need to use .pipe() in place of .then(), for chaining promises.
+
         // If user is logged, get informations from OVH API
         Ovh.get('/me').then(function (infosFromApi) {
 
