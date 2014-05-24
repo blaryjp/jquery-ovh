@@ -108,7 +108,7 @@
         }
 
         return $.ajax({
-            method      : 'POST',
+            type        : 'POST',
             url         : baseUrl + '/auth/credential',
             headers     : $.extend({
                 'X-Ovh-Application' : keys.ak
@@ -148,7 +148,7 @@
 
         return getApiTimeDiff().then(function (diff) {
             return $.ajax({
-                method  : 'POST',
+                type    : 'POST',
                 url     : baseUrl + '/auth/logout',
                 headers : getHeaders({
                     method : 'POST',
@@ -209,7 +209,7 @@
 
             // Get headers
             config.headers = config.noAuthentication ? getHeaders() : getHeaders({
-                method : config.method,
+                method : config.type,
                 url    : config.url,
                 body   : config.data ? JSON.stringify(config.data) : '',
                 diff   : diff
@@ -235,7 +235,7 @@
      */
     function getSchema (schemaPath) {
         return $.ajax({
-            method  : 'GET',
+            type    : 'GET',
             url     : baseUrl + schemaPath + '.json',
             cache   : true,
             headers : getHeaders()
@@ -279,7 +279,7 @@
      */
     function getApiTimeDiff () {
         return $.ajax({
-            method  : 'GET',
+            type    : 'GET',
             url     : baseUrl + '/auth/time',
             cache   : true,
             headers : getHeaders()
@@ -538,8 +538,8 @@
     $.each(['get', 'put', 'post', 'delete', 'remove', 'del'], function (key, name) {
         fcts[name] = function (url, config) {
             return request($.extend(config || {}, {
-                method : ((name === 'remove' || name === 'del') ? 'delete' : name).toUpperCase(),
-                url    : baseUrl + url
+                type : ((name === 'remove' || name === 'del') ? 'delete' : name).toUpperCase(),
+                url  : baseUrl + url
             }));
         };
     });
