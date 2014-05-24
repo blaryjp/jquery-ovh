@@ -25,7 +25,7 @@
         $('#infos').hide();
 
         // User click on the "Log in" button
-        $('#login').on('click', function () {
+        $('#login').bind('click', function () {
             Ovh.login();
         });
     }

@@ -6,11 +6,10 @@ jQuery module for the [OVH](https://api.ovh.com) API.
   - Simple to use
   - Well documented
   - CommonJS/AMD support
-  - Only 1.9KB minified and gzipped!
+  - Compatible with jQuery 1.6 and above
+  - Only 2KB minified and gzipped!
 
 The OVH API Console is available [here](https://api.ovh.com/console).
-
-Requires jQuery >= 1.5.
 
 [TODO] Tests
 
@@ -68,6 +67,8 @@ Usage
 -----
 
 All functions (except 'isLogged') returns a `jqXHR` object (see [jQuery docs](https://api.jquery.com/jQuery.ajax/#jqXHR)).
+
+Note: If you're using jQuery < 1.8, you need to use `.pipe()` in place of `.then()`, for chaining promises.
 
 ```javascript
 $.ovh.get('/me').then(function (infos) {
@@ -181,4 +182,3 @@ Note
 ----
 
 This library is not maintained by OVH.
-

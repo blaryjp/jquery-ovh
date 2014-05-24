@@ -45,6 +45,10 @@
         ck: ''     // Consumer Key
     };
 
+    // @see http://bugs.jquery.com/ticket/11010
+    var jqVersion = $.fn.jquery && $.fn.jquery.split('.'),
+        then = jqVersion && parseInt(jqVersion[0], 10) === 1 && parseInt(jqVersion[1], 10) < 8 ? 'pipe' : 'then';
+
 
     /*==========  CONF  ==========*/
 
@@ -118,7 +122,7 @@
                 accessRules : accessRules,
                 redirection : urlToRedirect || window.location.href
             })
-        }).then(function (data) {
+        })[then](function (data) {
 
             // Consumer Key!
             keys.ck = data.consumerKey;
@@ -146,7 +150,7 @@
             return rejectNotCredential();
         }
 
-        return getApiTimeDiff().then(function (diff) {
+        return getApiTimeDiff()[then](function (diff) {
             return $.ajax({
                 type    : 'POST',
                 url     : baseUrl + '/auth/logout',
@@ -156,7 +160,7 @@
                     body   : '',
                     diff   : diff
                 })
-            }).then(function () {
+            })[then](function () {
                 // Delete old CK
                 localStorage.removeItem('ovh-ck');
                 keys.ck = null;
@@ -184,7 +188,7 @@
             return rejectNotCredential();
         }
 
-        return getApiTimeDiff().then(function (diff) {
+        return getApiTimeDiff()[then](function (diff) {
 
             // Because we delete params from original object, save a local copy.
             var params = config.params;
@@ -250,7 +254,7 @@
      * @return {jqXHR}             Done/Fail.
      */
     function getModels (schemaPath, name) {
-        return getSchema(schemaPath).then(function (schema) {
+        return getSchema(schemaPath)[then](function (schema) {
             // If no "name" param, return all models
             if (!name) {
                 return schema.models;
@@ -283,7 +287,7 @@
             url     : baseUrl + '/auth/time',
             cache   : true,
             headers : getHeaders()
-        }).then(function (data) {
+        })[then](function (data) {
 
             // Calculate the time lag between system clock and API time
             return Math.floor(Date.now() / 1000) - data;
