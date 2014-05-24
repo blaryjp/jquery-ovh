@@ -1,7 +1,7 @@
 {
   "name": "jquery-ovh",
   "main": "jquery-ovh.min.js",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "homepage": "https://github.com/blaryjp/jquery-ovh",
   "authors": [
     "Jean-Philippe Blary (@blary_jp)"
