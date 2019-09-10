@@ -16,7 +16,10 @@
   ],
   "license": "MIT",
   "ignore" : [
+    ".editorconfig",
+    ".gitattributes",
     ".gitignore",
+    ".npmrc",
     "package.json",
     "Gruntfile.js"
   ],
